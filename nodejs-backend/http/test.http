@@ -1,0 +1,10 @@
+
+### All users request
+GET http://localhost:3000/users
+Accept: application/json
+Content-Type: application/json
+
+### All items request
+
+
+GET http://localhost:3000/items/all
