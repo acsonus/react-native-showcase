@@ -1,7 +1,7 @@
-import { Picker } from '@react-native-picker/picker';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 
 export default function RegisterScreen() {
   const [username, setUsername] = useState('');
@@ -80,15 +80,15 @@ export default function RegisterScreen() {
         onChangeText={setEmail}
       />
 
-      <Picker
-        selectedValue={role}
-        style={styles.input}
-        onValueChange={(itemValue) => setRole(itemValue)}
-      >
-        <Picker.Item label="Administrator" value="Administrator" />
-        <Picker.Item label="User" value="User" />
-        <Picker.Item label="Employee" value="Employee" />
-      </Picker>
+      
+      <Dropdown 
+        data={[
+          { label: "Administrator", value: "Administrator" },
+          { label: "User", value: "User" },
+          { label: "Employee", value: "Employee" },
+        ]}
+        value={role}
+        onChange={(item) => setRole(item.value)} labelField={'label'} valueField={'value'}/>
       <Button title="Register" onPress={handleRegister} />
     </View>
   );

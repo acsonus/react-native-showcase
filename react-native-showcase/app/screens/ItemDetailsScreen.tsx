@@ -1,8 +1,6 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import User from "../models/User";
-import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
-import { router, useRouter, useLocalSearchParams } from "expo-router";
-import { Picker } from "@react-native-picker/picker";
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import Item from "../models/Item";
 
 export default function ItemDetailsScreen() {

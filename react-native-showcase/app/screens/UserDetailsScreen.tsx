@@ -1,8 +1,8 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Dropdown } from "react-native-element-dropdown";
 import User from "../models/User";
-import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
-import { router, useRouter, useLocalSearchParams } from "expo-router";
-import { Picker } from "@react-native-picker/picker";
 
 
 export default function EditUserScreen() {
@@ -23,7 +23,7 @@ export default function EditUserScreen() {
             body: JSON.stringify(user),
         }).then(() => {
             router.navigate("./ManageUsersScreen");
-        }).catch((error) => { console.log('Error saving user', error); });  
+        }).catch((error) => { console.log('Error saving user', error); });
     };
     return (
         <View style={styles.container}>
@@ -56,15 +56,16 @@ export default function EditUserScreen() {
                 value={user.password}
                 onChangeText={(text) => setUser({ ...user, password: text })}
             />
-            <Picker
-                selectedValue={user.role}
-                style={styles.input}
-                onValueChange={(text) => setUser({ ...user, role: text })}
-            >
-                <Picker.Item label="Administrator" value="Administrator" />
-                <Picker.Item label="User" value="User" />
-                <Picker.Item label="Employee" value="Employee" />
-            </Picker>
+
+
+            <Dropdown
+                data={[
+                    { label: "Administrator", value: "Administrator" },
+                    { label: "User", value: "User" },
+                    { label: "Employee", value: "Employee" },
+                ]}
+                value={user.role}
+                onChange={(item) => setUser({...user,role:item.value})} labelField={'label'} valueField={'value'} />
             <Button title="Save" onPress={handleSave} />
         </View>
     );
